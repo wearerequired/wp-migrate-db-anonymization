@@ -54,7 +54,6 @@ class Plugin {
 		$this->slug      = basename( dirname( $plugin_file_path ) );
 
 		$GLOBALS['wpmdb_meta'][ $this->slug ]['version'] = $plugin_version;
-		load_plugin_textdomain( $this->slug, false, dirname( plugin_basename( $this->file_path ) ) . '/languages/' );
 
 		( new Admin( $this->file_path ) )->register();
 
