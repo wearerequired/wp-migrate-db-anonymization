@@ -43,4 +43,4 @@ function wpmdb_anonymize() {
 }
 
 // Initialize the plugin
-wpmdb_anonymizev();
+wpmdb_anonymize();
