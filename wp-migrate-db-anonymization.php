@@ -25,8 +25,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Bootstrap our autoloader
-require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+// Bootstrap autoloader
+if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+}
 
 /**
  * The main function responsible for returning the one true Mergebot
@@ -40,21 +42,5 @@ function wpmdb_anonymize() {
 	return call_user_func( array( $class, 'get_instance' ), __FILE__, $version );
 }
 
-/**
- * Load the plugin if it is compatible with the site.
- */
-function wpmdb_anonymize_init() {
-	$plugin_check = new WPMDB_Anonymization_Compatibility( __FILE__ );
-	if ( ! $plugin_check->is_compatible() ) {
-		// Plugin does not meet requirements, display notice and bail
-		$plugin_check->register_notice();
-
-		return;
-	}
-
-	// Start it up
-	wpmdb_anonymize();
-}
-
 // Initialize the plugin
-wpmdb_anonymize_init();
+wpmdb_anonymizev();
