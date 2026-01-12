@@ -33,6 +33,11 @@ class Rule {
 	/**
 	 * @var
 	 */
+	protected $anonymize_function;
+
+	/**
+	 * @var
+	 */
 	protected $constraint;
 
 	/**
@@ -133,12 +138,6 @@ class Rule {
 			$args = $this->fake_data_args;
 		}
 
-		$data = call_user_func_array( array( $faker, $this->fake_data_type ), $args );
-
-		if ( ! empty( $this->post_process_function ) && is_callable( $this->post_process_function ) ) {
-			$data = call_user_func( $this->post_process_function, $data );
-		}
-
-		return $data;
+		return call_user_func_array( array( $faker, $this->fake_data_type ), $args );
 	}
 }
