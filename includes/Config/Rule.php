@@ -133,9 +133,7 @@ class Rule {
 			$args = $this->fake_data_args;
 		}
 
-		if ( ! empty( $this->fake_data_type ) && is_callable( [ $faker, $this->fake_data_type ] ) ) {
-			$data = call_user_func_array( array( $faker, $this->fake_data_type ), $args );
-		}
+		$data = call_user_func_array( array( $faker, $this->fake_data_type ), $args );
 
 		if ( ! empty( $this->post_process_function ) && is_callable( $this->post_process_function ) ) {
 			$data = call_user_func( $this->post_process_function, $data );
