@@ -20,14 +20,14 @@ Network: True
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // **********************************************************************
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Bootstrap autoloader
-if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
-	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+// Bootstrap autoloader.
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
 }
 
 /**
@@ -35,12 +35,9 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
  * instance to functions everywhere.
  */
 function wpmdb_anonymize() {
-	// Namespaced class name as variable so it can be parsed in < PHP 5.3
-	$class   = 'WPMDB\\Anonymization\\Plugin';
 	$version = '0.3.4';
-
-	return call_user_func( array( $class, 'get_instance' ), __FILE__, $version );
+	return WPMDB\Anonymization\Plugin::get_instance( __FILE__, $version );
 }
 
-// Initialize the plugin
+// Initialize the plugin.
 wpmdb_anonymize();
