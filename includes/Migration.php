@@ -68,7 +68,15 @@ class Migration {
 				continue;
 			}
 
-			return $rule->anonymize( $this->faker );
+			if ( ! empty( $rule->anonymize_function ) && is_callable( $rule->anonymize_function ) ) {
+				$data = call_user_func( $rule->anonymize_function, $data );
+			} else {
+				$data = $rule->anonymize( $this->faker );
+			}
+
+			if ( ! empty( $rule->post_process_function ) && is_callable( $rule->post_process_function ) ) {
+				$data = call_user_func( $rule->post_process_function, $data );
+			}
 		}
 
 		return $data;
