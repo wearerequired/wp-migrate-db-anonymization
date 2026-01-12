@@ -12,10 +12,7 @@
   "autoload": {
     "psr-4": {
       "WPMDB\\Anonymization\\": "includes"
-    },
-    "files": [
-      "includes/Compatibility.php"
-    ]
+    }
   },
   "require": {
     "php": "^8.3",
