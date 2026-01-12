@@ -60,5 +60,8 @@ return array(
 		'comment_author_IP'    => array(
 			'fake_data_type' => 'ipv4',
 		),
+		'comment_agent'        => array(
+			'fake_data_type' => 'userAgent',
+		),
 	),
 );
