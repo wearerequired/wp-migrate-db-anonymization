@@ -129,15 +129,25 @@ class Rule {
 	}
 
 	public function anonymize( $faker ) {
-		if ( empty( $this->fake_data_type ) ) {
+		if ( empty( $this->fake_data_type ) && empty( $this->anonymize_function ) ) {
 			return '';
 		}
 
-		$args = array();
-		if ( isset( $this->fake_data_args ) && is_array( $this->fake_data_args ) ) {
-			$args = $this->fake_data_args;
+		if ( ! empty( $this->anonymize_function ) && is_callable( $this->anonymize_function ) ) {
+			$data = call_user_func( $this->anonymize_function, $data );
+		} else {
+			$args = array();
+			if ( isset( $this->fake_data_args ) && is_array( $this->fake_data_args ) ) {
+				$args = $this->fake_data_args;
+			}
+
+			$data = call_user_func_array( array( $faker, $this->fake_data_type ), $args );
 		}
 
-		return call_user_func_array( array( $faker, $this->fake_data_type ), $args );
+		if ( ! empty( $this->post_process_function ) && is_callable( $this->post_process_function ) ) {
+			$data = call_user_func( $this->post_process_function, $data );
+		}
+
+		return $data;
 	}
 }
