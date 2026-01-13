@@ -95,14 +95,12 @@ class Rule {
 			return true;
 		}
 
-		$default_constraint_class = 'WPMDB\\Anonymization\\Config\\Constraint';
-
 		$function = $this->constraint;
 		if ( ! is_callable( $function ) ) {
-			if ( ! method_exists( $default_constraint_class, $this->constraint ) ) {
+			if ( ! method_exists( Constraint::class, $this->constraint ) ) {
 				return true;
 			}
-			$function = array( $default_constraint_class, $this->constraint );
+			$function = array( Constraint::class, $this->constraint );
 		}
 
 		return call_user_func( $function, $row );
