@@ -1,5 +1,5 @@
 {
-  "name": "deliciousbrains/wp-migrate-db-anonymization",
+  "name": "wearerequired/wp-migrate-db-anonymization",
   "description": "An extension to WP Migrate DB Pro that anonymizes user data",
   "type": "wordpress-plugin",
   "license": "GPLv3",
@@ -7,6 +7,12 @@
     {
       "name": "Iain",
       "email": "iain@polevaultweb.com"
+    },
+    {
+      "name": "required",
+      "email": "team@required.com",
+      "homepage": "https://required.com",
+      "role": "Company"
     }
   ],
   "autoload": {
