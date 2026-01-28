@@ -23,5 +23,10 @@
   "require": {
     "php": "^8.3",
     "johnykvsky/dummygenerator": "^0.1.0"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.4.x-dev"
+    }
   }
 }
